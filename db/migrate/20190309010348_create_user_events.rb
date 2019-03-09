@@ -1,0 +1,12 @@
+class CreateUserEvents < ActiveRecord::Migration[5.2]
+  def change
+    create_table :user_events do |t|
+      t.integer :user_id
+      t.integer :event_id
+      t.integer :confirmation_status
+      t.integer :seating_quality
+
+      t.timestamps
+    end
+  end
+end
