@@ -1,0 +1,1 @@
+json.partial! @group, partial: "group", as: :group

@@ -1,14 +1,13 @@
 class Api::RequestsController < ApplicationController
  
  def create
-  #where is this pulling these params from? Are these URL segment params?
-  group = Group.find(params[:group_id])  #if this is going to be on the group show page, this will be an axios call with the group id that will populate here? passing along the params of the page you're currently on?
-  user_event = UserEvent.find_by(event: group.event.id, user_id: current_user.id)
+  #these params below could be string query, url segement or form params. They will be form params from vue.js params hash 
+  group = Group.find(params[:group_id]) #if this is going to be on the group show page, this will be an axios call with the group id that will populate here? passing along the params of the page you're currently on?
+  user_event = UserEvent.find_by(event_id: group.event.id, user_id: current_user.id)
 
    request = Request.new(
-     confirmed: params[:confirmed], #this is a boolean, since the default is false, can we remove this and just have the admin as the one with the ability to make it true?
      user_event: user_event.id,   #need to be on user event page
-     group_id: params[:group_id] #should this be group_id: group (now that we have a local variable defined above)
+     group_id: params[:group_id] #this can be group_id: params[:group_id] or group_id: group.id
    )
 
    if request.save

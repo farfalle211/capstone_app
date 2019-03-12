@@ -2,8 +2,13 @@ class Api::GroupsController < ApplicationController
   def create
     group = Group.new(
       size: params[:size],
-      event_id: params[:event_id],   #this populated from the backend with this.event.id?
-      confirmation: params[:confirmation]
+      event_id: params[:event_id],
+      seating_quality: params[:seating_quality],
+      open: params[:open],
+      label: params[:label],
+      meet_before: params[:meet_before],
+      drink_level: params[:drink_level],
+      gender_preference: params[:gender_preference] 
     )
 
     if group.save
@@ -14,25 +19,32 @@ class Api::GroupsController < ApplicationController
   end
 
   def show
-    @user_event = User_event.find(params[:id])
+    @group = Group.find(params[:id])
     render 'show.json.jbuilder'
   end
 
   def update
-    @user_event = User_event.find(params[:id])
+    @group = Group.find(params[:id])
 
-    @user_event.confirmation = params[:confirmation] || @user_event.confirmation
+    @group.size = params[:size] || @group.size
+    @group.event_id = params[:event_id] || @group.event_id
+    @group.seating_quality = params[:seating_quality] || @group.seating_quality
+    @group.open = params[:open] || @group.open
+    @group.label = params[:label] || @group.label
+    @group.meet_before = params[:meet_before] || @group.meet_before
+    @group.drink_level = params[:drink_level] || @group.drink_level
+    @group.gender_preference = params[:gender_preference] || @group.gender_preference
 
-    if @user_event.save
+    if @group.save
       render 'show.json.jbuilder'
     else
-      render json: {errors: @user_events.errors.full_messages}, status: :unprocessable_entity
+      render json: {errors: @groups.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
   def destroy
-    user_event = User_event.find(params[:id])
-    user_event.destroy
-    render json: {message: "User_event destroyed successfully"}
+    group = Group.find(params[:id])
+    group.destroy
+    render json: {message: "Group destroyed successfully"}
   end
 end

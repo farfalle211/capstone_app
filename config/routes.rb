@@ -3,9 +3,10 @@ Rails.application.routes.draw do
     post "/sessions" => "sessions#create"
 
     post "/users" => "users#create"
-    post "/users/:id" => "users#show"
-    post "/users/:id" => "users#update"
+    get "/users/:id" => "users#show"
+    patch "/users/:id" => "users#update"
 
+    post 'events' => 'events#create'
     get '/events' => 'events#index'
     get '/events' => 'events#show'
 
@@ -14,21 +15,21 @@ Rails.application.routes.draw do
     delete '/images/:id' => 'images#destroy'
 
     #don't need a user_events index page because we will display all user_events with user.user_events, displaying all user_events associated with that user. 
-    get '/user_events' => 'user_events#create'
+    post '/user_events' => 'user_events#create'
     get '/user_events/:id' => 'user_events#show'
-    get '/user_events/:id' => 'user_events#update'
-    get '/user_events/:id' => 'user_events#destroy'
+    patch '/user_events/:id' => 'user_events#update'
+    delete '/user_events/:id' => 'user_events#destroy'
 
-    get '/requests' => 'requests#create'
+    post '/requests' => 'requests#create'
     get '/requests/:id' => 'requests#show'
-    get '/requests/:id' => 'requests#update'
-    get '/requests/:id' => 'requests#destroy'
+    patch '/requests/:id' => 'requests#update'
+    delete '/requests/:id' => 'requests#destroy'
 
-    get '/groups' => 'groups#index' #will not need a group index beacuse of event.groups?
-    get '/groups' => 'groups#create'
+    #will not need a group index beacuse of event.groups?
+    post '/groups' => 'groups#create'
     get '/groups/:id' => 'groups#show'
-    get '/groups/:id' => 'groups#update'
-    get '/groups/:id' => 'groups#destroy'
+    patch '/groups/:id' => 'groups#update'
+    delete '/groups/:id' => 'groups#destroy'
 
   end
 end

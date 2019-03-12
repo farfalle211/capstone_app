@@ -10,6 +10,8 @@ class User < ApplicationRecord
   
   has_many :created_groups, class_name: "Group", foreign_key: "creater_id"
 
+  enum gender: {male: 1, female: 2}
+
   validates :email, presence: true, uniqueness: true
 
 end
