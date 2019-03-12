@@ -4,7 +4,6 @@ class Api::GroupsController < ApplicationController
       size: params[:size],
       event_id: params[:event_id],
       seating_quality: params[:seating_quality],
-      open: params[:open],
       label: params[:label],
       meet_before: params[:meet_before],
       drink_level: params[:drink_level],
