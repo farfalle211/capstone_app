@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_secure_password
+  
   has_many :images
   has_many :user_events
   has_many :events, through: :user_events
@@ -8,6 +10,7 @@ class User < ApplicationRecord
   
   has_many :created_groups, class_name: "Group", foreign_key: "creater_id"
 
+  validates :email, presence: true, uniqueness: true
 
 end
 
