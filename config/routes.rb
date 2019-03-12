@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     delete '/images/:id' => 'images#destroy'
 
     #don't need a user_events index page because we will display all user_events with user.user_events, displaying all user_events associated with that user. 
+    get '/user_events' => 'user_events#index'
     post '/user_events' => 'user_events#create'
     get '/user_events/:id' => 'user_events#show'
     patch '/user_events/:id' => 'user_events#update'

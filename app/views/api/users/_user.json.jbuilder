@@ -12,6 +12,10 @@ json.events do
   json.array! user.events, partial: 'api/events/event', as: :event
 end
 
+# json.event do
+#   json.partial! user.event, partial: 'api/events/event', as: :event
+# end   #this is how you would write a belongs to association. 
+
 json.groups do
   json.array! user.groups, partial: 'api/groups/group', as: :group
 end

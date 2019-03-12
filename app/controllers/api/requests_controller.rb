@@ -6,7 +6,7 @@ class Api::RequestsController < ApplicationController
   user_event = UserEvent.find_by(event_id: group.event.id, user_id: current_user.id)
 
    request = Request.new(
-     user_event: user_event.id,   #need to be on user event page
+     user_event_id: user_event.id,   #need to be on user event page
      group_id: params[:group_id] #this can be group_id: params[:group_id] or group_id: group.id
    )
 
