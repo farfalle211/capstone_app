@@ -2,12 +2,13 @@ Rails.application.routes.draw do
   namespace :api do
     post "/sessions" => "sessions#create"
 
+    get '/users' => 'users#index'
     post "/users" => "users#create"
     get "/users/:id" => "users#show"
     patch "/users/:id" => "users#update"
 
-    post 'events' => 'events#create'
     get '/events' => 'events#index'
+    post 'events' => 'events#create'
     get '/events' => 'events#show'
 
     post '/images' => 'images#create'
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
     delete '/requests/:id' => 'requests#destroy'
 
     #will not need a group index beacuse of event.groups?
+    get '/groups' => 'groups#index'
     post '/groups' => 'groups#create'
     get '/groups/:id' => 'groups#show'
     patch '/groups/:id' => 'groups#update'

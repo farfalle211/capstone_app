@@ -1,4 +1,10 @@
 class Api::GroupsController < ApplicationController
+
+  def index
+    @groups = Group.all
+    render 'index.json.jbuilder'
+  end
+  
   def create
     group = Group.new(
       size: params[:size],
@@ -7,7 +13,8 @@ class Api::GroupsController < ApplicationController
       label: params[:label],
       meet_before: params[:meet_before],
       drink_level: params[:drink_level],
-      gender_preference: params[:gender_preference] 
+      gender_preference: params[:gender_preference], 
+      creater_id: params[:creater_id]
     )
 
     if group.save
