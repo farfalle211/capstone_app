@@ -8,3 +8,9 @@ json.seating_quality user_event.seating_quality
 json.formatted do
   json.confirmation_status user_event.friendly_confirmation_status
 end
+
+json.formatted_event do
+  json.event user_event.event.name
+  json.date user_event.event.friendly_date
+end
+

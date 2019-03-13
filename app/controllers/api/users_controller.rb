@@ -35,8 +35,6 @@ class Api::UsersController < ApplicationController
 
     @user.name = params[:name] || @user.name
     @user.email = params[:email] || @user.email
-    @user.password = params[:password] || @user.password
-    @user.password_confirmation = params[:password_confirmation] || @user.password_confirmation
     @user.age = params[:age] || @user.age
     @user.gender = params[:gender] || @user.gender
     @user.summary = params[:summary] || @user.summary
