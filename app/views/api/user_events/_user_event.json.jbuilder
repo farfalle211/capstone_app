@@ -4,3 +4,7 @@ json.event_id user_event.event_id
 json.confirmation_status user_event.confirmation_status
 json.seating_quality user_event.seating_quality
 
+
+json.formatted do
+  json.confirmation_status user_event.friendly_confirmation_status
+end

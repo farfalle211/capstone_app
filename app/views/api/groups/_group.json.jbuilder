@@ -9,3 +9,9 @@ json.drink_level group.drink_level
 json.gender_preference group.gender_preference
 json.creater_id group.creater_id
 
+json.formatted do
+  json.meet_before group.friendly_meet_before
+  json.drink_level group.friendly_drink_level
+  json.gender_preference group.gender_preference
+end
+

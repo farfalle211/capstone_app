@@ -12,6 +12,18 @@ class Group < ApplicationRecord
   enum drink_level: {sober: 1, one_to_two: 2, three_or_more: 3}
   enum gender_preference: {male: 1, female: 2, no_preference: 3}
 
+  def friendly_meet_before
+    self.meet_before.gsub("_", " ").titleize
+  end
+
+  def friendly_drink_level
+    self.drink_level.gsub("_", " ")
+  end
+
+  def friendly_gender_preference
+    self.gender_preference.gsub("_", " ")
+  end
+
 end
 
 #creeater defines the foreign key were looking for. 
