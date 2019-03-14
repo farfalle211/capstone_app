@@ -4,13 +4,16 @@ json.date event.friendly_date
 json.category event.category
 json.location event.location
 
-json.check_user_event event.check_user_event(current_user.id)
+
+if event.user_event_by_user(current_user)
+  json.user_event_by_user do 
+      json.partial! event.user_event_by_user(current_user), partial: "api/user_events/user_event", as: :user_event
+  end
+else
+  json.user_event_by_user nil
+end
 
 json.groups do
   json.array! event.groups, partial: 'api/groups/group', as: :group
-end
-
-json.user_events do
-  json.array! event.user_events, partial: 'api/user_events/user_event', as: :user_event
 end
 

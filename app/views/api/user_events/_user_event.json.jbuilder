@@ -6,7 +6,9 @@ json.seating_quality user_event.seating_quality
 
 
 json.formatted do
-  json.confirmation_status user_event.friendly_confirmation_status
+  if user_event.confirmation_status
+    json.confirmation_status user_event.friendly_confirmation_status
+  end
 end
 
 json.formatted_event do

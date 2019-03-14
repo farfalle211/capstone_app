@@ -6,9 +6,14 @@ json.gender user.gender
 json.summary user.summary
 json.location user.location
 
-json.events do
-  json.array! user.events, partial: 'api/events/event', as: :event
+# json.events do
+#   json.array! user.events, partial: 'api/events/event', as: :event
+# end
+
+json.user_events do 
+  json.array! user.user_events, partial: 'api/user_events/user_event', as: :user_event
 end
+
 
 # json.event do
 #   json.partial! user.event, partial: 'api/events/event', as: :event

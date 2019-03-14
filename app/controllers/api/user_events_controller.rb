@@ -2,21 +2,21 @@ class Api::UserEventsController < ApplicationController
 
 
   def index
-    @user_events = current_user.user_events
+    @user_events = UserEvent.all
     render 'index.json.jbuilder'
   end
   #we will be on the Events index or show page when creating a User_event? I think it will be an event show. 
   def create
-    user_event = UserEvent.new(
+    @user_event = UserEvent.new(
       user_id: current_user.id,
       event_id: params[:event_id],   #this populated from the backend with this.event.id?
       confirmation_status: params[:confirmation_status]
     )
 
-    if user_event.save
-      render json: {message: 'User event created successfully'}, status: :created
+    if @user_event.save
+      render 'show.json.jbuilder'
     else
-      render json: {errors: user_event.errors.full_messages}, status: :bad_request
+      render json: {errors: @user_event.errors.full_messages}, status: :bad_request
     end
   end
 
