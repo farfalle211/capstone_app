@@ -1,5 +1,6 @@
 class Api::EventsController < ApplicationController
-
+  before_action :authenticate_user
+  
   def index
     @events = Event.all
     render 'index.json.jbuilder'

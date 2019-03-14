@@ -15,3 +15,5 @@ json.formatted do
   json.gender_preference group.gender_preference
 end
 
+
+

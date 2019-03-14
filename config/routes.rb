@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
     get '/events' => 'events#index'
     post 'events' => 'events#create'
-    get '/events' => 'events#show'
+    get '/events/:id' => 'events#show'
 
     post '/images' => 'images#create'
     patch '/images/:id' => 'images#update'

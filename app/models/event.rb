@@ -10,4 +10,16 @@ class Event < ApplicationRecord
       end
   end
 
+  def check_user_event
+    "anything"
+    # true if self.user_events.where(user_id: current_user.id)
+      
+      # current_user.id == event.user_event
+
+      # current user thats logged ins user_events
+      # # display user_event.id (on the front end)
+      # current_user.user_events
+      # #can user_events be called on current_user. What methods besides id can?
+  end
+
 end

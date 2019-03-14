@@ -11,8 +11,6 @@ class UserEvent < ApplicationRecord
     self.confirmation_status.gsub("_", " ").titleize
   end
 
-
-
 end
 
 

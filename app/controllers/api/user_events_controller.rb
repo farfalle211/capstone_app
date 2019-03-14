@@ -2,7 +2,7 @@ class Api::UserEventsController < ApplicationController
 
 
   def index
-    @user_events = UserEvent.all
+    @user_events = current_user.user_events
     render 'index.json.jbuilder'
   end
   #we will be on the Events index or show page when creating a User_event? I think it will be an event show. 
