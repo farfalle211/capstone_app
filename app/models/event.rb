@@ -10,9 +10,9 @@ class Event < ApplicationRecord
       end
   end
 
-  def check_user_event
-    "anything"
-    # true if self.user_events.where(user_id: current_user.id)
+  def check_user_event(current_user_thing)
+    
+    true if self.user_events.where(user_id: current_user_thing)
       
       # current_user.id == event.user_event
 

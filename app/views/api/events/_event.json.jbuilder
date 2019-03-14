@@ -4,7 +4,7 @@ json.date event.friendly_date
 json.category event.category
 json.location event.location
 
-json.check_user_event event.check_user_event
+json.check_user_event event.check_user_event(current_user.id)
 
 json.groups do
   json.array! event.groups, partial: 'api/groups/group', as: :group
