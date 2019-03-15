@@ -13,7 +13,11 @@ json.formatted do
   json.meet_before group.friendly_meet_before
   json.drink_level group.friendly_drink_level
   json.gender_preference group.gender_preference
+  json.event_date group.event.friendly_date
+  json.event_name group.event.name
 end
+
+
 
 
 

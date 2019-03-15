@@ -1,12 +1,12 @@
 class Api::GroupsController < ApplicationController
-  before_action :authenticate_user
+  # before_action :authenticate_user
   def index
     @groups = Group.all
     render 'index.json.jbuilder'
   end
   
   def create
-    group = Group.new(
+    @group = Group.new(
       size: params[:size],
       event_id: params[:event_id],
       seating_quality: params[:seating_quality],
@@ -17,10 +17,10 @@ class Api::GroupsController < ApplicationController
       creater_id: params[:creater_id]
     )
 
-    if group.save
-      render json: {message: 'Group created successfully'}, status: :created
+    if @group.save
+      render 'show.json.jbuilder'
     else
-      render json: {errors: group.errors.full_messages}, status: :bad_request
+      render json: {errors: @group.errors.full_messages}, status: :bad_request
     end
   end
 
