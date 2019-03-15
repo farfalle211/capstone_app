@@ -1,5 +1,10 @@
 class Api::RequestsController < ApplicationController
  
+def index
+  @requests = Request.all
+  render 'index.json.jbuilder'
+end
+
  def create
   #these params below could be string query, url segement or form params. They will be form params from vue.js params hash 
   group = Group.find(params[:group_id]) #if this is going to be on the group show page, this will be an axios call with the group id that will populate here? passing along the params of the page you're currently on?

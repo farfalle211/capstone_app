@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     patch '/user_events/:id' => 'user_events#update'
     delete '/user_events/:id' => 'user_events#destroy'
 
+    get '/requests/' => 'requests#index'
     post '/requests' => 'requests#create'
     get '/requests/:id' => 'requests#show'
     patch '/requests/:id' => 'requests#update'

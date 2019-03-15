@@ -24,6 +24,17 @@ class Group < ApplicationRecord
     self.gender_preference.gsub("_", " ")
   end
 
+  def requested?(current_user)
+    user_event_obj = current_user.user_events.find_by(event_id: self.event_id)
+
+    if user_event_obj
+      request = Request.find_by(user_event_id: user_event_obj.id, group_id: self.id)
+      !!(request)
+    else
+      false
+    end
+  end
+
 end
 
 #creeater defines the foreign key were looking for. 
