@@ -9,7 +9,11 @@ json.drink_level group.drink_level
 json.gender_preference group.gender_preference
 json.creater_id group.creater_id
 
-json.requested group.requested?(current_user)
+# json.requested group.requested?(current_user)
+
+json.requests do
+  json.array! group.requests, partial: 'api/requests/request', as: :request
+end
 
 json.formatted do
   json.meet_before group.friendly_meet_before

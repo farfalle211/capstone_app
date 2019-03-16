@@ -10,15 +10,15 @@ end
   group = Group.find(params[:group_id]) #if this is going to be on the group show page, this will be an axios call with the group id that will populate here? passing along the params of the page you're currently on?
   user_event = UserEvent.find_by(event_id: group.event.id, user_id: current_user.id)
 
-   request = Request.new(
+   @request = Request.new(
      user_event_id: user_event.id,   #need to be on user event page
      group_id: params[:group_id] #this can be group_id: params[:group_id] or group_id: group.id
    )
 
-   if request.save
-     render json: {message: 'Request created successfully'}, status: :created
+   if @request.save
+     render 'show.json.jbuilder'
    else
-     render json: {errors: request.errors.full_messages}, status: :bad_request
+     render json: {errors: @request.errors.full_messages}, status: :bad_request
    end
  end
 

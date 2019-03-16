@@ -6,4 +6,7 @@ class Request < ApplicationRecord
    belongs_to :user_event
    has_one :user, through: :user_event
    
+
+   enum confirmed: {pending: 0, confirmed: 1}
+
 end

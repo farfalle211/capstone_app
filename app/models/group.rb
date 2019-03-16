@@ -29,11 +29,12 @@ class Group < ApplicationRecord
 
     if user_event_obj
       request = Request.find_by(user_event_id: user_event_obj.id, group_id: self.id)
-      !!(request)
+      request
     else
       false
     end
   end
+
 
 end
 
