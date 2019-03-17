@@ -1,5 +1,6 @@
 class Api::GroupsController < ApplicationController
-  # before_action :authenticate_user
+  before_action :authenticate_user
+  
   def index
     @groups = Group.all
     render 'index.json.jbuilder'
