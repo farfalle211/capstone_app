@@ -16,7 +16,7 @@ end
      group_id: params[:group_id]  #this can be group_id: params[:group_id] or group_id: group.id
    )
 
-   if current_user.id != group.creater_id
+   if (current_user.id != group.creater_id) && (group.open == true)
      @request.save
      render 'show.json.jbuilder'
    else

@@ -47,7 +47,7 @@ class Group < ApplicationRecord
     all_requests = self.requests
 
     all_requests.each do |request|
-      if request.confirmed = 1
+      if request.confirmed == "confirmed"
         confirmed_count += 1
       else
       end
@@ -66,7 +66,7 @@ class Group < ApplicationRecord
     confirmed_count = 0
     all_requests = self.requests
     all_requests.each do |request|
-      if request.confirmed = 1
+      if request.confirmed == "confirmed"
         confirmed_count += 1
       else
       end
