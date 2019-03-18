@@ -12,6 +12,11 @@ class Group < ApplicationRecord
   enum drink_level: {sober: 1, one_to_two: 2, three_or_more: 3}
   enum gender_preference: {male: 1, female: 2, no_preference: 3}
 
+  # def initialize
+  #   super
+  #   open?
+  # end
+
   def friendly_meet_before
     self.meet_before.gsub("_", " ").titleize
   end
@@ -35,6 +40,41 @@ class Group < ApplicationRecord
     end
   end
 
+
+  def open?
+    # number_of_members = self.users.length + 1
+    confirmed_count = 0
+    all_requests = self.requests
+
+    all_requests.each do |request|
+      if request.confirmed = 1
+        confirmed_count += 1
+      else
+      end
+    end
+    number_of_members = confirmed_count + 1
+
+    if number_of_members >= self.size
+      self.open = false
+    else
+      self.open = true
+    end
+  end
+
+  def friendly_group_size
+    
+    confirmed_count = 0
+    all_requests = self.requests
+    all_requests.each do |request|
+      if request.confirmed = 1
+        confirmed_count += 1
+      else
+      end
+    end
+    number_of_members = confirmed_count + 1
+
+    "#{number_of_members}/#{self.size}"
+  end
 
 end
 

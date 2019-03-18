@@ -1,5 +1,5 @@
 class Api::GroupsController < ApplicationController
-  before_action :authenticate_user
+  # before_action :authenticate_user
   
   def index
     @groups = Group.all
@@ -31,7 +31,9 @@ class Api::GroupsController < ApplicationController
   end
 
   def update
+
     @group = Group.find(params[:id])
+    creater_id = @group.creater.id
 
     @group.size = params[:size] || @group.size
     @group.event_id = params[:event_id] || @group.event_id
@@ -42,10 +44,11 @@ class Api::GroupsController < ApplicationController
     @group.drink_level = params[:drink_level] || @group.drink_level
     @group.gender_preference = params[:gender_preference] || @group.gender_preference
 
-    if @group.save
+    if current_user.id == creater_id
+      @group.save
       render 'show.json.jbuilder'
     else
-      render json: {errors: @groups.errors.full_messages}, status: :unprocessable_entity
+      render json: {errors: @group.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
