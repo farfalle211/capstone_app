@@ -3,7 +3,7 @@ class Group < ApplicationRecord
   belongs_to :creater, class_name: "User"
   belongs_to :event
 
-  has_many :requests
+  has_many :requests, dependent: :destroy
 
   has_many :user_events, through: :requests
   has_many :users, through: :user_events
@@ -11,6 +11,9 @@ class Group < ApplicationRecord
   enum meet_before: {dinner: 1, drinks: 2, :dinner_and_drinks => 3}
   enum drink_level: {sober: 1, one_to_two: 2, three_or_more: 3}
   enum gender_preference: {male: 1, female: 2, no_preference: 3}
+
+
+  validates :size, presence: true
 
   # def initialize
   #   super
@@ -42,23 +45,24 @@ class Group < ApplicationRecord
 
 
   def open?
-    # number_of_members = self.users.length + 1
-    confirmed_count = 0
-    all_requests = self.requests
+    requests.confirmed.count < size || open
+   
+    # confirmed_count = 0
+    # all_requests = self.requests
 
-    all_requests.each do |request|
-      if request.confirmed == "confirmed"
-        confirmed_count += 1
-      else
-      end
-    end
-    number_of_members = confirmed_count + 1
+    # all_requests.each do |request|
+    #   if request.confirmed == "confirmed"
+    #     confirmed_count += 1
+    #   else
+    #   end
+    # end
+    # number_of_members = confirmed_count + 1
 
-    if number_of_members >= self.size
-      self.open = false
-    else
-      self.open = true
-    end
+    # if number_of_members >= self.size
+    #   self.open = false
+    # else
+    #   self.open = true
+    # end
   end
 
   def friendly_group_size

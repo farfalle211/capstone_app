@@ -1,10 +1,12 @@
 class Api::EventsController < ApplicationController
-  # before_action :authenticate_user
+  before_action :authenticate_user
   
   def index
     # @events = Event.all
 
-    response = HTTP.get("https://api.seatgeek.com/2/events?geoip=true&client_id=#{ ENV["API_KEY"] }&client_secret=#{ ENV["API_SECRET"] }")
+
+
+    response = HTTP.get("https://api.seatgeek.com/2/events?geoip=08540&client_id=#{ ENV["API_KEY"] }&client_secret=#{ ENV["API_SECRET"] }")
 
     api_event_hashes = response.parse["events"].map do |event_hash|
                                                   {
@@ -25,18 +27,14 @@ class Api::EventsController < ApplicationController
   end
 
   def create
-    event = Event.new(
-      name: params[:name],
-      date: params[:date],
-      category: params[:category],
-      location: params[:location]
-    )
+    @event = Event.find_or_create_by(
+                                      name: params[:name],
+                                      date: params[:date],
+                                      category: params[:category],
+                                      location: params[:location]
+                                    )
 
-    if event.save
-      render json: {message: 'Event created successfully'}, status: :created
-    else
-      render json: {errors: event.errors.full_messages}, status: :bad_request
-    end
+    render 'show.json.jbuilder'
   end
 
   def show
