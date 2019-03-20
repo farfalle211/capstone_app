@@ -40,7 +40,6 @@ class Api::UsersController < ApplicationController
     @user.summary = params[:summary] || @user.summary
     @user.location = params[:location] || @user.location
 
-
     if @user.save
       render 'show.json.jbuilder'
     else

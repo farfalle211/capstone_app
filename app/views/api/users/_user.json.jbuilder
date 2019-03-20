@@ -22,3 +22,8 @@ end
 json.groups do
   json.array! user.groups, partial: 'api/groups/group', as: :group
 end
+
+
+json.created_groups do
+  json.array! user.created_groups, partial: 'api/groups/group', as: :group
+end
