@@ -6,7 +6,7 @@ class Api::EventsController < ApplicationController
 
 
 
-    response = HTTP.get("https://api.seatgeek.com/2/events?geoip=08540&client_id=#{ ENV["API_KEY"] }&client_secret=#{ ENV["API_SECRET"] }")
+    response = HTTP.get("https://api.seatgeek.com/2/events?geoip=true&client_id=#{ ENV["API_KEY"] }&client_secret=#{ ENV["API_SECRET"] }")
 
     api_event_hashes = response.parse["events"].map do |event_hash|
                                                   {

@@ -43,6 +43,10 @@ class Group < ApplicationRecord
     end
   end
 
+  def find_current_user(current_user)
+    current_user
+  end
+
 
   def open?
     requests.confirmed.count < size || open

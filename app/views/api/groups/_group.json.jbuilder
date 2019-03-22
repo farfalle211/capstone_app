@@ -13,6 +13,8 @@ json.creater group.creater
 
 json.requested group.requested?(current_user)
 
+json.current_user group.find_current_user(current_user)
+
 json.requests do
   json.array! group.requests, partial: 'api/requests/request', as: :request
 end

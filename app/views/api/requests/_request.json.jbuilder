@@ -8,4 +8,5 @@ json.user do
   json.name request.user.name
   json.age request.user.age
   json.location request.user.location
+  json.phone_number request.user.phone_number
 end

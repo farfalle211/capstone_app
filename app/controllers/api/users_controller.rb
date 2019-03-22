@@ -15,7 +15,8 @@ class Api::UsersController < ApplicationController
       age: params[:age],
       gender: params[:gender],
       summary: params[:summary],
-      location: params[:location]
+      location: params[:location],
+      phone_number: params[:phone_number]
     )
 
     if user.save
@@ -39,6 +40,7 @@ class Api::UsersController < ApplicationController
     @user.gender = params[:gender] || @user.gender
     @user.summary = params[:summary] || @user.summary
     @user.location = params[:location] || @user.location
+    @user.phone_number = params[:phone_number] || @user.phone_number
 
     if @user.save
       render 'show.json.jbuilder'
