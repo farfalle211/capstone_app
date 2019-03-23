@@ -11,7 +11,7 @@
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"
 # end
-every 1.day do
+every 1.day, at: '1:00 am' do
   rake 'destroy_events:task_1'
 end
 

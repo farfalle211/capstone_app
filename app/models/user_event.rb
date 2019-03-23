@@ -8,10 +8,14 @@ class UserEvent < ApplicationRecord
   has_many :requests
   has_many :groups, through: :requests
 
-  enum confirmation_status: {not_purchased: 1, purchased: 2}
+  enum confirmation_status: {not_purchased: 1, purchased: 2, attended: 3}
 
   def friendly_confirmation_status
     self.confirmation_status.gsub("_", " ").titleize
+  end
+
+  def adjusted_interested_total
+    (user.user_events.count - user.user_events.attended.count)
   end
 
 end

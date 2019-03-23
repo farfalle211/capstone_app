@@ -27,7 +27,7 @@ class Api::UserEventsController < ApplicationController
   def update
     @user_event = UserEvent.find(params[:id])
 
-    @user_event.confirmation_status = params[:confirmation_status] || @user_event.confirmation
+    @user_event.confirmation_status = params[:confirmation_status] || @user_event.confirmation_status
 
     if @user_event.save
       render 'show.json.jbuilder'

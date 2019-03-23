@@ -14,11 +14,9 @@ class Group < ApplicationRecord
 
 
   validates :size, presence: true
-
-  # def initialize
-  #   super
-  #   open?
-  # end
+  validates :label, uniqueness: true
+  validates :creater_id, uniqueness: {scope: :event_id,
+    message: "is only allowed to create one group per event"}
 
   def friendly_meet_before
     self.meet_before.gsub("_", " ").titleize
