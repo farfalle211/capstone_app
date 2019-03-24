@@ -23,7 +23,7 @@ class Group < ApplicationRecord
   end
 
   def friendly_drink_level
-    self.drink_level.gsub("_", " ")
+    self.drink_level.gsub("_", " ").titleize
   end
 
   def friendly_gender_preference
@@ -47,24 +47,24 @@ class Group < ApplicationRecord
 
 
   def open?
-    requests.confirmed.count < size || open
+    # requests.confirmed.count < size || open
    
-    # confirmed_count = 0
-    # all_requests = self.requests
+    confirmed_count = 0
+    all_requests = self.requests
 
-    # all_requests.each do |request|
-    #   if request.confirmed == "confirmed"
-    #     confirmed_count += 1
-    #   else
-    #   end
-    # end
-    # number_of_members = confirmed_count + 1
+    all_requests.each do |request|
+      if request.confirmed == "confirmed"
+        confirmed_count += 1
+      else
+      end
+    end
+    number_of_members = confirmed_count + 1
 
-    # if number_of_members >= self.size
-    #   self.open = false
-    # else
-    #   self.open = true
-    # end
+    if number_of_members >= self.size
+      self.open = false
+    else
+      self.open = true
+    end
   end
 
   def friendly_group_size
