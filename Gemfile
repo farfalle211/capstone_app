@@ -31,6 +31,8 @@ gem 'jwt'
 
 gem 'figaro'
 
+gem 'geocoder'
+
 gem 'whenever', require: false
 
 # Use ActiveStorage variant

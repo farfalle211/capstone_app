@@ -18,6 +18,22 @@ class UserEvent < ApplicationRecord
     (user.user_events.count - user.user_events.attended.count)
   end
 
+  def distance_between
+    eLat = event.latitude
+    eLon = event.longitude
+
+    uLat = user.latitude
+    uLon = user.longitude
+
+    p uLat
+    p uLon
+
+    p eLat
+    p eLon
+
+    Geocoder::Calculations.distance_between([uLat, uLon], [eLat, eLon]) < 4
+  end
+
 end
 
 

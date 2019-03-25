@@ -7,6 +7,8 @@ json.seating_quality user_event.seating_quality
 json.events_attended user_event.user.user_events.attended.count
 json.adjusted_interested_total user_event.adjusted_interested_total
 
+json.distance_between user_event.distance_between
+
 
 json.formatted do
   if user_event.confirmation_status

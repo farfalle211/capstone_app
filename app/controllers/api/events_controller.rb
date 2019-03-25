@@ -4,8 +4,6 @@ class Api::EventsController < ApplicationController
   def index
     # @events = Event.all
 
-
-
     response = HTTP.get("https://api.seatgeek.com/2/events?geoip=true&client_id=#{ ENV["API_KEY"] }&client_secret=#{ ENV["API_SECRET"] }")
 
     api_event_hashes = response.parse["events"].map do |event_hash|
@@ -16,12 +14,13 @@ class Api::EventsController < ApplicationController
                                                     location: "#{event_hash['venue']['address']}, #{event_hash['venue']['extended_address']}",
                                                     formatted: {
                                                                 date: Time.strptime(event_hash["datetime_local"], "%Y-%m-%eT%H:%M:%S").strftime("%A, %d %b %Y %l:%M %p")
-                                                                }
+                                                                },
+                                                    latitude: event_hash['venue']['location']['lat'],
+                                                    longitude: event_hash['venue']['location']['lon']
                                                    }
                                                 end
 
     render json: api_event_hashes
-
 
     # render 'index.json.jbuilder'
   end
@@ -31,7 +30,9 @@ class Api::EventsController < ApplicationController
                                       name: params[:name],
                                       date: params[:date],
                                       category: params[:category],
-                                      location: params[:location]
+                                      location: params[:location],
+                                      latitude: params[:latitude],
+                                      longitude: params[:longitude]
                                     )
 
     render 'show.json.jbuilder'

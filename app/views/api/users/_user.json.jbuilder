@@ -6,6 +6,9 @@ json.gender user.gender
 json.summary user.summary
 json.location user.location
 json.phone_number user.phone_number
+json.latitude user.latitude
+json.longitude user.longitude
+
 
 # json.events do
 #   json.array! user.events, partial: 'api/events/event', as: :event

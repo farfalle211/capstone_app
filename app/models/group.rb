@@ -15,6 +15,8 @@ class Group < ApplicationRecord
 
   validates :size, presence: true
   validates :label, uniqueness: true
+  validates :meet_before, presence: true
+  validates :drink_level, presence: true
   validates :creater_id, uniqueness: {scope: :event_id,
     message: "is only allowed to create one group per event"}
 

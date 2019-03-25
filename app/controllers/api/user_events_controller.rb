@@ -29,7 +29,8 @@ class Api::UserEventsController < ApplicationController
 
     @user_event.confirmation_status = params[:confirmation_status] || @user_event.confirmation_status
 
-    if @user_event.save
+    if @user_event.distance_between
+      @user_event.save
       render 'show.json.jbuilder'
     else
       render json: {errors: @user_events.errors.full_messages}, status: :unprocessable_entity

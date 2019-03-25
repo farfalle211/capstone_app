@@ -3,6 +3,8 @@ json.name event.name
 json.date event.friendly_date
 json.category event.category
 json.location event.location
+json.latitude event.latitude
+json.longitude event.longitude
 
 
 if event.user_event_by_user(current_user)
