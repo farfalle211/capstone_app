@@ -31,7 +31,7 @@ class UserEvent < ApplicationRecord
     p eLat
     p eLon
 
-    Geocoder::Calculations.distance_between([uLat, uLon], [eLat, eLon]) < 4
+    Geocoder::Calculations.distance_between([uLat, uLon], [eLat, eLon]) < 7
   end
 
 end

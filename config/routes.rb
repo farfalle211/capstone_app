@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     patch "/users/:id" => "users#update"
 
     get '/events' => 'events#index'
-    post 'events' => 'events#create'
+    post '/events' => 'events#create'
     get '/events/:id' => 'events#show'
 
     post '/images' => 'images#create'
