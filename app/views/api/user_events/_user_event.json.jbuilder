@@ -21,3 +21,11 @@ json.formatted_event do
   json.date user_event.event.friendly_date
 end
 
+# json.formatted_event_2 do
+#   if user_event.confirmation_status == "attended"
+#     json.event user_event.event.name
+#     json.date user_event.event.friendly_date
+#     json.group user_event.event.
+#   end
+# end
+
