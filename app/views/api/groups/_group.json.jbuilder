@@ -26,4 +26,5 @@ json.formatted do
   json.size group.friendly_group_size
   json.event_date group.event.friendly_date
   json.event_name group.event.name
+  json.event_location group.event.location
 end
