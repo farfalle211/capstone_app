@@ -1,0 +1,150 @@
+<body class="solid-color">
+    
+    <!-- loader -->
+    <div class="loader"></div>
+    <!-- loader -->  
+    
+    <div class="col-left">
+        <div class="middle">
+            <div class="inner">
+                <section class="section section-welcome">
+                    <ul class="navigation">
+                        <li><a href="#about" data-toggle="tab">Home</a></li>
+                        <li><a href="#services" data-toggle="tab">Hello</a></li>
+                        <li><a href="#contact" data-toggle="tab">Contact</a></li>
+                    </ul>
+                    <h1>We'll back soon</h1>
+                    <p>We are currently working on a new website and won’t take long. Please don’t forget to subscribe to be notified!</p>
+                    <div class="counter">
+                        <ul>
+                            <li><span id="cday"></span>/days</li>
+                            <li><span id="chours"></span>/hours</li>
+                            <li><span id="cminutes"></span>/minutes</li>
+                            <li><span id="cseconds"></span>/seconds</li>
+                        </ul>
+                    </div>
+                    <!-- end div .counter -->
+                </section>
+            </div>
+        </div><!-- .middle --> 
+    </div><!-- .col-left --> 
+    
+    <div class="col-right">
+        <div class="middle tab-content">                
+            <section class="section section-newsletter tab-pane fade in active" id="newsletter"> 
+                <h2>Subscribe Now</h2>
+                <p>Submit your email and we will notify you when we are ready!</p>
+                <form id="newsletter-form" class="newsletter-form form-inline">
+                    <div class="form-group">
+                        <label class="sr-only" for="newsletter_email">Your Email:</label>
+                        <input type="email" id="newsletter_email" name="newsletter_email" class="form-control newsletter_email" placeholder="Subscribe" required> 
+                    </div>
+                    <button type="submit" class="btn btn-main">Send</button>
+                    <div class="alert-message"></div>
+                </form>                   
+            </section><!-- #newsletter -->
+            
+            <section class="section tab-pane fade" id="about">
+                <a href="#newsletter" data-toggle="tab" class="section-close"><i class="fa fa-close"></i></a>
+                <h2>About Us</h2>                   
+                <p class="section-description">Over the last 3 years, we are experienced in frontend and backend development technologies including advanced HTML, CSS, Bootstrap, Wordpress, PHP, MySQL, jQuery (cross-browser and cross-platform compatibility). Demonstrated understanding of web usability, web accessibility standards, web technologies and design principles.</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="thumbnail">
+                            <img src="images/history.jpg" alt="History">
+                            <div class="caption">
+                                <h4 class="block-title">History</h4>
+                                <p>Our experienced marketers, talented designers and skilled programmers work together to uncover your goals and understand your business and market. We develop and build web solutions designed to attract your target customers.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="thumbnail">
+                            <img src="images/who_we_are.jpg" alt="Who we are">
+                            <div class="caption">
+                                <h4 class="block-title">Who we are</h4>
+                                <p>Our experienced marketers, talented designers and skilled programmers work together to uncover your goals and understand your business and market. We develop and build web solutions designed to attract your target customers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>                    
+            </section><!-- #about -->
+            
+            <section class="section tab-pane fade" id="services">
+                <a href="#newsletter" data-toggle="tab" class="section-close"><i class="fa fa-close"></i></a>
+                <h2>Our Services</h2>                    
+                <div class="block-list">
+                    <div class="block">
+                        <i class="fa fa-laptop"></i> 
+                        <div class="block-content">
+                            <h4 class="block-title">Web Design</h4>
+                            <p>We strive to create a unique design for your website that will help your business, corporation, or individual enterprise stand out. </p>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <i class="fa fa-phone-square"></i>
+                        <div class="block-content">
+                            <h4 class="block-title">Mobile App</h4>
+                            <p>With such a wide variety of smart phones and tablets, you are now able to reach large markets and demographics easily!</p>
+                        </div>   
+                    </div>
+                    <div class="block">
+                        <i class="fa fa-picture-o"></i>
+                        <div class="block-content">
+                            <h4 class="block-title">Web Hosting</h4>
+                            <p>Our hosting services can range from shared hosting, where your site is given an allotted amount of space to use on one server that has many other sites.</p>  
+                        </div>
+                    </div>
+                    <div class="block">
+                        <i class="fa fa-cog"></i>
+                        <div class="block-content">
+                            <h4 class="block-title">Web Development</h4>
+                            <p>We can deliver exactly what you are looking for, such as a custom e-commerce application, client portals for you and your clients to use.</p>
+                        </div>                                
+                    </div>
+                </div>
+            </section><!-- #services -->
+            
+            <section class="section tab-pane fade" id="contact">
+                <a href="#newsletter" data-toggle="tab" class="section-close"><i class="fa fa-close"></i></a>
+                <h2>Get In Touch</h2>                    
+                <ul class="info">
+                    <li><i class="fa fa-home"></i> 3137 rue Levy Montreal, QC H3C 5K4</li>
+                    <li><i class="fa fa-phone"></i> +1 (234) 567-8910</li>
+                    <li><i class="fa fa-envelope"></i> <a href="mailto:infp@example.com">infp@example.com</a></li>
+                </ul>
+                <ul class="social-icon">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                </ul>
+                <div class="separator"></div>
+                <p>Fill out form below, and we'll contact you soon.</p>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label class="sr-only" for="name">Name</label>
+                        <input type="text" id="name" class="form-control" name="name" placeholder="Name*">                               
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="email">Your Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Your E-mail*">                                
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="message">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="7" placeholder="Message*" required=""></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-block btn-main">Submit</button>
+                    </div>
+                    <div class="alert-message"></div>
+                </form>
+            </section><!-- #contact -->                
+        </div><!-- .middle.tab-content --> 
+    </div><!-- .col-right --> 
+
+    <!-- scripts -->  
+    <script src="js/minify_js_min.js"></script>        
+    <script src="js/scripts.js"></script>        
+</body>

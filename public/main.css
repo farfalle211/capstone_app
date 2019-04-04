@@ -1,0 +1,23 @@
+.form-control {
+  
+  color: white;
+}
+
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
+.nav.nav-tabs {
+  border-bottom: solid #02aef0 1px !important;
+}
+
+.nav-link.active {
+  border-top: solid #02aef0 1px !important;
+  border-left: solid #02aef0 1px !important;
+  border-right: solid #02aef0 1px !important;
+  border-bottom: solid #000 0px !important;
+  background-color: #4E7D8F;
+}
