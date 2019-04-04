@@ -8,7 +8,8 @@ json.location user.location
 json.phone_number user.phone_number
 json.latitude user.latitude
 json.longitude user.longitude
-json.image_url rails_blob_url(user.image) if user.image.attachment
+json.image user.image
+# json.image_url rails_blob_url(user.image) if user.image.attachment
 
 
 # json.events do
