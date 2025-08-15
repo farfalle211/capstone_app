@@ -44,4 +44,5 @@ class Api::EventsController < ApplicationController
       render 'show.json.jbuilder'
   end
 
+  private
 end
