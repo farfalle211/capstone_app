@@ -1,0 +1,13 @@
+.git
+log/*
+tmp/*
+node_modules
+.bundle
+coverage
+spec
+test
+doc
+*.log
+*.tmp
+*.swp
+.env

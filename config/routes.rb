@@ -40,4 +40,6 @@ Rails.application.routes.draw do
   end
 
   get "/*path" => proc { [200, {}, [ActionView::Base.new.render(file: 'public/index.html')]] }
+  get "/health", to: proc { [200, {}, ["OK"]] }
+  
 end
