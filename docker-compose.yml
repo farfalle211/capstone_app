@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: development
+      RACK_ENV: development
+      BUNDLE_WITHOUT: ""          # include dev/test in dev
+      DATABASE_URL: postgres://postgres:postgres@db:5432/capstone_dev
+    volumes:
+      - .:/app                    # live code reload
+      - bundle_cache:/usr/local/bundle
+    depends_on:
+      - db
+    command: bundle exec puma -C config/puma.rb
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+
+volumes:
+  dbdata:
+  bundle_cache:
