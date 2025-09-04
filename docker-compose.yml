@@ -1,19 +1,45 @@
 version: "3.9"
 services:
+  dd-agent:
+    image: gcr.io/datadoghq/agent:7
+    container_name: dd-agent
+    environment:
+      DD_API_KEY: ${DD_API_KEY}
+      DD_SITE: datadoghq.com
+      DD_ENV: development
+      DD_APM_ENABLED: "true"
+      DD_APM_RECEIVER_SOCKET: /var/run/datadog/apm.socket
+      DD_DOGSTATSD_SOCKET: /var/run/datadog/dsd.socket
+      DD_LOGS_ENABLED: "true"
+      DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL: "true"
+      DD_CONTAINER_EXCLUDE_LOGS: "name:dd-agent"
+    volumes:
+      - dd-sockets:/var/run/datadog
+      - dd-agent-run:/opt/datadog-agent/run
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
+
   web:
     build: .
     ports:
       - "3000:3000"
     environment:
+      DD_SERVICE: capstone_rails_app
+      DD_ENV: development
       RAILS_ENV: development
       RACK_ENV: development
       BUNDLE_WITHOUT: ""          # include dev/test in dev
       DATABASE_URL: postgres://postgres:postgres@db:5432/capstone_dev
+      DD_TRACE_AGENT_URL: unix:///var/run/datadog/apm.socket
+      # Optional for custom metrics via DogStatsD over UDS:
+      # DOGSTATSD_SOCKET_PATH: /var/run/datadog/dsd.socket
     volumes:
       - .:/app                    # live code reload
       - bundle_cache:/usr/local/bundle
+      - dd-sockets:/var/run/datadog
     depends_on:
       - db
+      - dd-agent
     command: bundle exec puma -C config/puma.rb
 
   db:
@@ -29,3 +55,5 @@ services:
 volumes:
   dbdata:
   bundle_cache:
+  dd-sockets:
+  dd-agent-run:
