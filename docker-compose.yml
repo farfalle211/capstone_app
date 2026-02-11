@@ -30,6 +30,7 @@ services:
     environment:
       DD_SERVICE: capstone_rails_app
       DD_ENV: development
+      DD_TAGS: "layer:api,team:intake"
       RAILS_ENV: development
       RACK_ENV: development
       BUNDLE_WITHOUT: ""          # include dev/test in dev
