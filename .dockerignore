@@ -11,3 +11,4 @@ doc
 *.tmp
 *.swp
 .env
+config/master.key

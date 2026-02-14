@@ -6,8 +6,7 @@ ENV APP_HOME=/app
 # Add build args / runtime env for source-code integration
 ARG DD_GIT_REPOSITORY_URL
 ARG DD_GIT_COMMIT_SHA
-ENV DD_GIT_REPOSITORY_URL=${DD_GIT_REPOSITORY_URL}
-ENV DD_GIT_COMMIT_SHA=${DD_GIT_COMMIT_SHA}
+ENV DD_TAGS="git.repository_url:${DD_GIT_REPOSITORY_URL},git.commit.sha:${DD_GIT_COMMIT_SHA}"
 
 # Build & runtime deps for Ruby and gems
 RUN apt-get update -y && apt-get install -y --no-install-recommends \
