@@ -6,17 +6,18 @@ class Api::UsersController < ApplicationController
   end
 
   def create
+    p = params[:user] || params[:api_user] || params
     user = User.new(
-      name: params[:name].titleize,
-      email: params[:email],
-      password: params[:password],
-      password_confirmation: params[:password_confirmation],
-      age: params[:age],
-      gender: params[:gender],
-      summary: params[:summary],
-      location: params[:location],
-      phone_number: params[:phone_number],
-      image: params[:image]
+      name: (p[:name] || "").to_s.titleize,
+      email: p[:email],
+      password: p[:password],
+      password_confirmation: p[:password_confirmation],
+      age: p[:age],
+      gender: p[:gender],
+      summary: p[:summary],
+      location: p[:location],
+      phone_number: p[:phone_number],
+      image: p[:image]
     )
 
     if user.save

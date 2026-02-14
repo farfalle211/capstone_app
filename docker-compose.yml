@@ -45,6 +45,7 @@ services:
     depends_on:
       - db
       - dd-agent
+    entrypoint: ["./bin/docker-entrypoint"]
     command: bundle exec puma -C config/puma.rb
 
   db:

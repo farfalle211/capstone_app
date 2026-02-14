@@ -26,11 +26,15 @@ A Ruby on Rails API application with event management, user authentication, and 
    ```bash
    docker compose up --build
    ```
-
-4. **Set up the database:**
+   The web container runs `db:migrate` on startup. On **first run** (or fresh clone), create the databases once:
    ```bash
-   # In another terminal
-   docker compose exec web rails db:create db:migrate db:seed
+   docker compose exec web rails db:create
+   ```
+   Then restart or let the entrypoint handle migrations on subsequent starts.
+
+4. **Seed the database (optional, only when you want initial data):**
+   ```bash
+   docker compose exec web rails db:seed
    ```
 
 5. **Access the application:**
