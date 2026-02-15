@@ -15,8 +15,10 @@ class Api::SessionsController < ApplicationController
         Rails.application.credentials.fetch(:secret_key_base),
         'HS256'
       )
-      # Only expose whitelisted attributes; use DB values to avoid path/injection from params
-      render json: { jwt: jwt, email: user.email.to_s, user_id: user.id }, status: :created
+      @jwt = jwt
+      @email = user.email.to_s
+      @user_id = user.id
+      render :create, status: :created
     else
       render json: {}, status: :unauthorized
     end

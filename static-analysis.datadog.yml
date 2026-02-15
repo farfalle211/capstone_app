@@ -1,0 +1,11 @@
+# Datadog Static Analyzer config (used locally and in CI)
+# https://docs.datadoghq.com/security/code_security/static_analysis/
+schema-version: v1
+rulesets:
+  - ruby-security
+  - ruby-best-practices
+ignore:
+  - vendor
+  - node_modules
+  - tmp
+  - log
