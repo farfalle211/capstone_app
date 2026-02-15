@@ -31,3 +31,6 @@
 
 # Ignore environment variables file
 .env
+
+# Datadog / Docker secret files (never commit)
+/secrets

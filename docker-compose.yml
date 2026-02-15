@@ -4,8 +4,8 @@ services:
     image: gcr.io/datadoghq/agent:7
     container_name: dd-agent
     environment:
-      DD_API_KEY: ${DD_API_KEY}
       DD_SITE: datadoghq.com
+      DD_HOSTNAME: mike_docker_agent
       DD_ENV: development
       DD_APM_ENABLED: "true"
       DD_APM_RECEIVER_SOCKET: /var/run/datadog/apm.socket
@@ -13,11 +13,17 @@ services:
       DD_LOGS_ENABLED: "true"
       DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL: "true"
       DD_CONTAINER_EXCLUDE_LOGS: "name:dd-agent"
+      DD_SECRET_BACKEND_TYPE: docker.secrets
+      DD_API_KEY: ENC[dd_api_key]
+      DD_APP_KEY: ENC[dd_app_key]
     volumes:
       - dd-sockets:/var/run/datadog
       - dd-agent-run:/opt/datadog-agent/run
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped
+    secrets:
+      - dd_api_key
+      - dd_app_key
 
   web:
     build:
@@ -63,3 +69,9 @@ volumes:
   bundle_cache:
   dd-sockets:
   dd-agent-run:
+
+secrets:
+  dd_api_key:
+    file: ./secrets/api_key.txt
+  dd_app_key:
+    file: ./secrets/app_key.txt
