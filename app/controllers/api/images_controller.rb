@@ -14,9 +14,9 @@ class Api::ImagesController < ApplicationController
   end
 
   def update
-    @image = Image.find(params[:id])
+    @image = Image.find(params.fetch(:id))
 
-    @image.image_url = params[:image_url] || @image.image_url
+    @image.image_url = params.fetch(:image_url, @image.image_url)
 
     if @image.save
       render 'show.json.jbuilder'
@@ -26,7 +26,7 @@ class Api::ImagesController < ApplicationController
   end
 
   def destroy
-    image = Image.find(params[:id])
+    image = Image.find(params.fetch(:id))
     image.destroy
     render json: {message: "Successfully removed image"}
   end

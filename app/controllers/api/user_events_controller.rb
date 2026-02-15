@@ -8,8 +8,8 @@ class Api::UserEventsController < ApplicationController
   def create
     @user_event = UserEvent.new(
       user_id: current_user.id,
-      event_id: params[:event_id],   #this populated from the backend with this.event.id?
-      confirmation_status: params[:confirmation_status]
+      event_id: params.fetch(:event_id),   #this populated from the backend with this.event.id?
+      confirmation_status: params.fetch(:confirmation_status)
     )
 
     if @user_event.save
@@ -20,14 +20,14 @@ class Api::UserEventsController < ApplicationController
   end
 
   def show
-    @user_event = UserEvent.find(params[:id])
+    @user_event = UserEvent.find(params.fetch(:id))
     render 'show.json.jbuilder'
   end
 
   def update
-    @user_event = UserEvent.find(params[:id])
+    @user_event = UserEvent.find(params.fetch(:id))
 
-    @user_event.confirmation_status = params[:confirmation_status] || @user_event.confirmation_status
+    @user_event.confirmation_status = params.fetch(:confirmation_status, @user_event.confirmation_status)
 
     if @user_event.distance_between
       @user_event.save
@@ -38,7 +38,7 @@ class Api::UserEventsController < ApplicationController
   end
 
   def destroy
-    user_event = UserEvent.find(params[:id])
+    user_event = UserEvent.find(params.fetch(:id))
     user_event.destroy
     render json: {message: "User event destroyed successfully"}
   end

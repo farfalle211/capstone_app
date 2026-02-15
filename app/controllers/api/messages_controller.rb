@@ -1,6 +1,6 @@
 class Api::MessagesController < ApplicationController
   def send_message
-    group = Group.find(params[:group_id])
+    group = Group.find(params.fetch(:group_id))
     group_phone_numbers = group.users.pluck(:phone_number)
     group_phone_numbers << group.creater.phone_number
     

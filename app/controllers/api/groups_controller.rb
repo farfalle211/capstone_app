@@ -26,23 +26,23 @@ class Api::GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:id])
+    @group = Group.find(params.fetch(:id))
     render 'show.json.jbuilder'
   end
 
   def update
 
-    @group = Group.find(params[:id])
+    @group = Group.find(params.fetch(:id))
     creater_id = @group.creater.id
 
-    @group.size = params[:size] || @group.size
-    @group.event_id = params[:event_id] || @group.event_id
-    @group.seating_quality = params[:seating_quality] || @group.seating_quality
-    @group.open = params[:open] || @group.open
-    @group.label = params[:label] || @group.label
-    @group.meet_before = params[:meet_before] || @group.meet_before
-    @group.drink_level = params[:drink_level] || @group.drink_level
-    @group.gender_preference = params[:gender_preference] || @group.gender_preference
+    @group.size = params.fetch(:size, @group.size)
+    @group.event_id = params.fetch(:event_id, @group.event_id)
+    @group.seating_quality = params.fetch(:seating_quality, @group.seating_quality)
+    @group.open = params.fetch(:open, @group.open)
+    @group.label = params.fetch(:label, @group.label)
+    @group.meet_before = params.fetch(:meet_before, @group.meet_before)
+    @group.drink_level = params.fetch(:drink_level, @group.drink_level)
+    @group.gender_preference = params.fetch(:gender_preference, @group.gender_preference)
 
     if current_user.id == creater_id
       @group.save
@@ -53,7 +53,7 @@ class Api::GroupsController < ApplicationController
   end
 
   def destroy
-    group = Group.find(params[:id])
+    group = Group.find(params.fetch(:id))
     group.destroy
     render json: {message: "Group destroyed successfully"}
   end

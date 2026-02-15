@@ -28,7 +28,7 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(params.fetch(:id))
     render 'show.json.jbuilder'
   end
 
@@ -36,19 +36,19 @@ class Api::UsersController < ApplicationController
 
     response = HTTP.get("https://api.seatgeek.com/2/events?geoip=true&client_id=#{ ENV["API_KEY"] }&client_secret=#{ ENV["API_SECRET"] }")
 
-    @user = User.find(params[:id])
+    @user = User.find(params.fetch(:id))
 
     @user.longitude = response.parse["meta"]["geolocation"]["lon"] || @user.longitude
     @user.latitude = response.parse["meta"]["geolocation"]["lat"] || @user.latitude
-    @user.name = params[:name] || @user.name
-    @user.email = params[:email] || @user.email
-    @user.age = params[:age] || @user.age
-    @user.gender = params[:gender] || @user.gender
-    @user.summary = params[:summary] || @user.summary
-    @user.location = params[:location] || @user.location
-    @user.phone_number = params[:phone_number] || @user.phone_number
+    @user.name = params.fetch(:name, @user.name)
+    @user.email = params.fetch(:email, @user.email)
+    @user.age = params.fetch(:age, @user.age)
+    @user.gender = params.fetch(:gender, @user.gender)
+    @user.summary = params.fetch(:summary, @user.summary)
+    @user.location = params.fetch(:location, @user.location)
+    @user.phone_number = params.fetch(:phone_number, @user.phone_number)
     # if params[:image]
-      @user.image = params[:image] || @user.image
+      @user.image = params.fetch(:image, @user.image)
     # end
 
     if @user.save

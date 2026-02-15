@@ -6,19 +6,21 @@ class Api::EventsController < ApplicationController
 
     response = HTTP.get("https://api.seatgeek.com/2/events?geoip=true&client_id=#{ ENV["API_KEY"] }&client_secret=#{ ENV["API_SECRET"] }")
 
-    api_event_hashes = response.parse["events"].map do |event_hash|
-                                                  {
-                                                    name: event_hash["title"],
-                                                    date: Time.strptime(event_hash["datetime_local"], "%Y-%m-%eT%H:%M:%S"),
-                                                    category: event_hash["type"].gsub('_', " ").titleize,
-                                                    location: "#{event_hash['venue']['address']}, #{event_hash['venue']['extended_address']}",
-                                                    formatted: {
-                                                                date: Time.strptime(event_hash["datetime_local"], "%Y-%m-%eT%H:%M:%S").strftime("%A, %d %b %Y %l:%M %p")
-                                                                },
-                                                    latitude: event_hash['venue']['location']['lat'],
-                                                    longitude: event_hash['venue']['location']['lon']
-                                                   }
-                                                end
+    api_event_hashes = response.parse.fetch("events", []).map do |event_hash|
+      venue = event_hash.fetch("venue", {})
+      loc = venue.fetch("location", {})
+      {
+        name: event_hash.fetch("title"),
+        date: Time.strptime(event_hash.fetch("datetime_local"), "%Y-%m-%eT%H:%M:%S"),
+        category: event_hash.fetch("type").gsub('_', " ").titleize,
+        location: "#{venue.fetch('address', '')}, #{venue.fetch('extended_address', '')}",
+        formatted: {
+          date: Time.strptime(event_hash.fetch("datetime_local"), "%Y-%m-%eT%H:%M:%S").strftime("%A, %d %b %Y %l:%M %p")
+        },
+        latitude: loc.fetch("lat"),
+        longitude: loc.fetch("lon")
+      }
+    end
 
     render json: api_event_hashes
 
@@ -27,12 +29,12 @@ class Api::EventsController < ApplicationController
 
   def create
     @event = Event.find_or_create_by(
-                                      name: params[:name],
-                                      date: params[:date],
-                                      category: params[:category],
-                                      location: params[:location],
-                                      latitude: params[:latitude],
-                                      longitude: params[:longitude]
+                                      name: params.fetch(:name),
+                                      date: params.fetch(:date),
+                                      category: params.fetch(:category),
+                                      location: params.fetch(:location),
+                                      latitude: params.fetch(:latitude),
+                                      longitude: params.fetch(:longitude)
                                     )
 
     render 'show.json.jbuilder'
@@ -40,7 +42,7 @@ class Api::EventsController < ApplicationController
 
   def show
     # check_user_event
-      @event = Event.find(params[:id])
+      @event = Event.find(params.fetch(:id))
       render 'show.json.jbuilder'
   end
 
