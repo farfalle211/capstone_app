@@ -5,7 +5,8 @@ A Ruby on Rails API application with event management, user authentication, and 
 ## Quick Start
 
 ### Prerequisites
-- Docker and Docker Compose
+- Docker and Docker Compose (`docker compose` v2)
+- Git
 - (Optional) Datadog API key for monitoring
 
 ### Running the Application
