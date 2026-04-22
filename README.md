@@ -60,6 +60,12 @@ The application provides REST API endpoints for:
 - **Monitoring:** Datadog APM (optional)
 - **Containerization:** Docker with multi-service setup
 
+## CI and Datadog deployment visibility
+
+Pushes to `master` run [`.github/workflows/docker-image.yml`](.github/workflows/docker-image.yml): `test`, then a **Mark deployment (Datadog)** job that runs `datadog-ci deployment mark` via `npx @datadog/datadog-ci@5` (synthetic `ci` environment; service `capstone_rails_app`). The job sets `DD_BETA_COMMANDS_ENABLED=1` (required for this subcommand in the `datadog-ci` CLI). The repository needs a `DD_API_KEY` **GitHub Actions secret** (same key as the static analysis workflow). The command is intended to run in GitHub Actions (supported CI provider for deployment mark).
+
+To use [Monitor CI Providers Deployments](https://docs.datadoghq.com/continuous_delivery/deployments/ciproviders/) in Datadog, your org also needs [Pipeline Visibility](https://docs.datadoghq.com/continuous_integration/pipelines) for GitHub Actions and access to the CD visibility feature set where applicable. After a green run on `master`, check **CI > Deployments** in Datadog.
+
 ## Development
 
 To make changes during development, the application supports live code reloading through Docker volume mounting.
